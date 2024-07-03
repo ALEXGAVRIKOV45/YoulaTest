@@ -5,14 +5,20 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import widgetobjects.MainPage;
 import widgetobjects.ProductPage;
 
+import java.util.logging.*;
+
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
 
 public class UItests {
 
     String baseUrl = "https://youla.ru/";
+    private final Logger logger = LoggerFactory.getLogger(UItests.class.getName());
 
     @BeforeAll
     static void configureTests() {
@@ -36,6 +42,9 @@ public class UItests {
         ProductPage.checkTextCategories("Категория","Запчасти и автотовары");
         ProductPage.checkTextCategories("Подкатегория","Запчасти");
         ProductPage.checkTextCategories("Группа деталей","фара");
+        logger.info(format("Название объявления - %s",ProductPage.textNameAdvert.getText()));
+        logger.info(format("Цена объявления - %s",ProductPage.textPriceAdvert.getText()));
+        logger.info(format("Описание - %s",ProductPage.getProductCategories("Описание")));
     }
 
     @AfterAll

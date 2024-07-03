@@ -13,6 +13,8 @@ public class ProductPage {
     static String textProductCategories = "//dt[text()='%1$s']/following-sibling::dd";
 
     public static SelenideElement textSaveDeal = $x("//div[@data-test-block='PaymentOption' and ./span[text()='Безопасная сделка']]");
+    public static SelenideElement textNameAdvert = $x("//h2[@data-test-block='ProductCaption']");
+    public static SelenideElement textPriceAdvert = $x("//span[@data-test-component='Price']/span");
 
     public static String getProductCategories(String categories) {
         return $x(format(textProductCategories, categories)).shouldBe(visible).getText();
